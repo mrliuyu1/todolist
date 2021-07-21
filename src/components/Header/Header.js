@@ -1,28 +1,40 @@
 import React, { Component } from "react";
 import "./Header.css";
 export default class Header extends Component {
-  render() {
-    const { list, hand } = this.props;
-   
+  state = {
+    content: "",
+  };
 
+  handle = (e) => {
+
+    this.setState({ 
+    content :  e.target.value
+    })
+  };
+
+  keyUp = (e) => {
+    if(e.keyCode === 13){
+      const { addTodo } = this.props
+      if(!e.target.value)return
+
+      addTodo(e.target.value)
+
+      this.setState({
+        content : ''
+      })
+
+    }
+  
+  };
+    
+  render() {
     return (
       <div className="todo-header">
         <input
           type="text"
-          onKeyDown={(e) => {
-            if (e.keyCode === 13) {
-              console.log(list);
-              if (!e.target.value) return;
-              list.push({
-                id: list.length? list[list.length - 1].id + 1 : 1,
-                todoName: e.target.value,
-                isDone: false,
-              });
-
-              hand(list);
-              e.target.value = "";
-            }
-          }}
+          value={this.state.content}
+          onChange={this.handle}
+          onKeyDown={this.keyUp}
         />
       </div>
     );

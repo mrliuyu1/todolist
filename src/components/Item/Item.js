@@ -1,33 +1,17 @@
 import React, { Component } from "react";
 import "./Item.css";
 export default class Item extends Component {
-
-
-
-
   render() {
-    const { item,deleteOne,} = this.props;
-  
+    const { item,deleteOne,checkOne } = this.props;
     
+
     return (
-      <li>
+      <li >
         <label>
-          <input
-            type="checkbox"
-            checked={item.isDone ? "checked" : ""}
-            onChange={(e) => {
-              const {render} = this.props;
-               item.isDone = !item.isDone
-               console.log(item);
-               render()
-               console.log(render);
-            }}
-          />
-          <span className={item.isDone ? "active" : ""}>{item.todoName}</span>
+          <input type="checkbox" checked={item.isDone} onChange={() =>{checkOne(item.id)}} />
+          <span>{item.todoName}</span>
         </label>
-        <button className="btn btn-danger" onClick={() =>{
-            deleteOne(item.id)
-        }}>删除</button>
+        <button className="btn btn-danger"  onClick={() =>{deleteOne(item.id)}}>删除</button>
       </li>
     );
   }
