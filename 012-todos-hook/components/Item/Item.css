@@ -11,12 +11,10 @@ li label {
   float: left;
   cursor: pointer;
 }
-
-li label span.active {
-  color: #ccc;
+li span.active { 
+  color : #ccc;
   text-decoration: line-through;
 }
-
 li label li input {
   vertical-align: middle;
   margin-right: 6px;
